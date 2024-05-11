@@ -4,21 +4,23 @@ class Edge {
         this.to = to;
         this.weight = weight;
     }
+}
+class Graph{
     vertices = [];
     edges = [];
     
     
-    static addEdge(from, to, weight){
+    addEdge(from, to, weight){
         this.edges.push(new Edge(from, to, weight));
         this.edges.sort()
     }
-    static addVertcie(name){
+    addVertcie(name){
         this.vertices.push(name);
         this.vertices.sort()
     }
     // takes a adjacency list reprsentition of a graph and returns a array with edge objects
-    static adjacencyToGraph(arr, keys){
-        
+    adjacencyToGraph(arr, keys){
+            
         for(let j = 0; j < arr.length; j++){
             this.addVertcie(keys[j])
             for(let i = 0; i < arr[j].length; i++){
@@ -28,9 +30,6 @@ class Edge {
                 
             }
         }
-        return graph;
-
-
     }
     __str__(keys){
         for(let i = 0; i < this.vertices.length; i++){
@@ -75,7 +74,8 @@ function main(){
         8: '9',
         9: '10'
     }
-    const graph = Edge.adjacencyToGraph(adjacencyMatrix, keys);
+    const graph = new Graph()
+    graph.adjacencyToGraph(adjacencyMatrix, keys);
     graph.__str__(keys);
 }
 main();
