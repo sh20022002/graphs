@@ -1,3 +1,4 @@
+module.exports = { Graph};
 class Edge {
     constructor(from, to, weight) {
         this.from = from;
@@ -6,17 +7,18 @@ class Edge {
     }
 }
 class Graph{
-    vertices = [];
-    edges = [];
-    
+    constructor(){
+        this.edges = new Array();
+        this.vertices = new Array();
+    }
     
     addEdge(from, to, weight){
         this.edges.push(new Edge(from, to, weight));
-        this.edges.sort()
+        this.edges.sort((a, b) => a.from - b.from);
     }
     addVertcie(name){
         this.vertices.push(name);
-        this.vertices.sort()
+        this.vertices.sort((a, b) => a.name - b.name);
     }
     // takes a adjacency list reprsentition of a graph and returns a array with edge objects
     adjacencyToGraph(arr, keys){
@@ -42,12 +44,7 @@ class Graph{
         }
     }
     
-    sort(){
-        this.edges.sort((a, b) => a.from - b.from);
-    }
-    sortV(){
-        this.vertices.sort((a, b) => a.name - b.name);
-    }
+    
 }
 function main(){
     const adjacencyMatrix = [
